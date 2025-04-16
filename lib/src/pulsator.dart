@@ -48,9 +48,11 @@ class Pulsator extends StatefulWidget {
     this.onCreated,
     this.onCompleted,
     this.child,
+    this.controller,
     super.key,
   })  : assert(count > 0),
         assert(repeat >= 0);
+  final AnimationController? controller;
 
   /// Pulse style configuration.
   final PulseStyle style;
@@ -100,12 +102,13 @@ class _PulsatorViewState extends State<Pulsator>
   @override
   void initState() {
     super.initState();
+    _controller = widget.controller;
     _buildAnimation();
   }
 
   @override
   void dispose() {
-    _controller?.dispose();
+    // _controller?.dispose();
     super.dispose();
   }
 
